@@ -1,0 +1,12 @@
+{
+  "User": [
+    {
+      "id": 1,
+      "name": "Rodolfo Rodrigues Bortolozo",
+      "user": "rodolfo",
+      "password": "123456",
+      "status": "A"
+    }
+  ],
+  "Pessoa": []
+}
