@@ -1,0 +1,2 @@
+# Comando para iniciar o servidor pelo Promt
+json-server --watch dbUser.json
