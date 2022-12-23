@@ -2,7 +2,7 @@
   "User": [
     {
       "id": 1,
-      "name": "Rodolfo",
+      "name": "Rodolfo R B",
       "user": "rodolfo",
       "password": "123456",
       "status": "A"
@@ -16,8 +16,15 @@
     },
     {
       "id": 3,
-      "name": "Willian",
-      "user": "willian",
+      "name": "Emerson",
+      "user": "emerson",
+      "password": "123",
+      "status": "I"
+    },
+    {
+      "id": 4,
+      "name": "333",
+      "user": "123",
       "password": "123",
       "status": "A"
     }

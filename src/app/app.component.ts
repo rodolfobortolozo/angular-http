@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { User } from './Models/User';
 import { UserService } from './Services/user.service';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent{
   users: User[];
   formUser : FormGroup;
   
-  constructor(private userService : UserService){ }
+  constructor(private formBuilder: FormBuilder, private userService : UserService){ }
   
   ngOnInit() : void{
     this.getAllUser();
@@ -34,11 +34,14 @@ export class AppComponent{
   }
 
   saveUser(user : User){
+    if(!this.formUser.valid){
+      return console.log("Campos Inválidos");
+    }
     console.log(user);
-    if(user.id!==undefined){
+    if(user.id!==null){
       this.userService.UpdateUser(user)
       .subscribe(()=>this.clearForm());
-      
+
     }else{
       this.userService.saveUser(user)
       .subscribe(()=>this.clearForm());
@@ -48,6 +51,7 @@ export class AppComponent{
 
   editUser(user : User){
     this.user = {...user};
+    this.formUser.patchValue(this.user);
 
   }
 
@@ -57,15 +61,26 @@ export class AppComponent{
 
   }
 
-  createForm(user : User) : void{
-    this.formUser = new FormGroup({
-      id : new FormControl(user.id),
-      name : new FormControl(user.name),
-      user : new FormControl(user.user),
-      password : new FormControl(user.password),
-      status : new FormControl(user.status)
+  // createForm(user : User) : void{
+  //   this.formUser = new FormGroup({
+  //     id : new FormControl(user.id),
+  //     name : new FormControl(user.name),
+  //     user : new FormControl(user.user),
+  //     password : new FormControl(user.password),
+  //     status : new FormControl(user.status)
 
-  })
+  // })
+  // }
+
+  createForm(user: User){
+    this.formUser = this.formBuilder.group({
+      id : user.id,
+      name : [user.name, Validators.required],
+      user : user.user,
+      password : user.password,
+      status : user.status
+
+    })
   }
 
   clearForm(){

@@ -24,19 +24,19 @@
 <br>
 <form [formGroup]="formUser" (ngSubmit)="onSubmit()">
   <label for="id">Id</label>
-  <input name="id" id="id" formControlName="id" [(ngModel)]="user.id" >
+  <input name="id" id="id" formControlName="id" >
   <br>
   <label for="name">Nome</label>
-  <input name="name" id="name" formControlName="name" [(ngModel)]="user.name">
+  <input name="name" id="name" formControlName="name" >
   <br>
   <label for="user">User</label>
-  <input name="user" id="user" formControlName="user" [(ngModel)]="user.user">
+  <input name="user" id="user" formControlName="user" >
   <br>
   <label for="password">Password</label>
-  <input name="password" id="password" formControlName="password" [(ngModel)]="user.password">
+  <input name="password" id="password" formControlName="password" >
   <br>
   <label for="status">Status</label>
-  <select name="status" id="status" formControlName="status" [(ngModel)]="user.status">
+  <select name="status" id="status" formControlName="status" >
     <option value="A" selected>Ativo</option>
     <option value="I">Inativo</option>
   </select>
