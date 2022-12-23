@@ -2,9 +2,23 @@
   "User": [
     {
       "id": 1,
-      "name": "Rodolfo Rodrigues Bortolozo",
+      "name": "Rodolfo",
       "user": "rodolfo",
       "password": "123456",
+      "status": "A"
+    },
+    {
+      "id": 2,
+      "name": "Alessandra",
+      "user": "alessandra",
+      "password": "teste",
+      "status": "A"
+    },
+    {
+      "id": 3,
+      "name": "Willian",
+      "user": "willian",
+      "password": "123",
       "status": "A"
     }
   ],

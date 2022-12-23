@@ -41,6 +41,14 @@ export class UserService {
     )
   }
 
+  UpdateUser(user : User) : Observable<User[]>{
+    return this.httpClient.put<User[]>(`${this.url}/${user.id}`,JSON.stringify(user),this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
+
   deleteUser(user : User) : Observable<User[]>{
     return this.httpClient.delete<User[]>(`${this.url}/${user.id}`)
   }
@@ -57,7 +65,7 @@ export class UserService {
       errorMessage =
         `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
-    console.log(errorMessage);
+    //console.log(errorMessage);
     return throwError(() => errorMessage);
   }
 }

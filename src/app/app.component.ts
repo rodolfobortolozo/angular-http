@@ -19,26 +19,60 @@ export class AppComponent{
   
   ngOnInit() : void{
     this.getAllUser();
-      this.createForm(User());
+      this.createForm(this.user);
   }
+  
+  onSubmit() {
+    this.saveUser(this.formUser.value);
 
+  }
+  
   getAllUser() : void{
-    this.userService.getUser().subscribe((users : User[])=>this.users = users);
+    this.userService.getUser()
+    .subscribe((users : User[])=>this.users = users);
 
   }
-    
+
+  saveUser(user : User){
+    console.log(user);
+    if(user.id!==undefined){
+      this.userService.UpdateUser(user)
+      .subscribe(()=>this.clearForm());
+      
+    }else{
+      this.userService.saveUser(user)
+      .subscribe(()=>this.clearForm());
+    }
+
+  }
+
+  editUser(user : User){
+    this.user = {...user};
+
+  }
+
+  deleteUser(user : User){
+    this.userService.deleteUser(user)
+    .subscribe(()=>this.getAllUser());
+
+  }
+
   createForm(user : User) : void{
     this.formUser = new FormGroup({
       id : new FormControl(user.id),
       name : new FormControl(user.name),
-      user : new FormControl(user.password),
-      passsword : new FormControl(user.password),
+      user : new FormControl(user.user),
+      password : new FormControl(user.password),
       status : new FormControl(user.status)
+
   })
   }
 
-  onSubmit() {
-    // aqui você pode implementar a l ogica para fazer seu formulário salvar
-    console.log(this.formUser.value);
+  clearForm(){
+    this.getAllUser();
+    this.formUser.reset();
+    this.user = {} as User;
+    console.log("Rodolfo");
   }
+
 }

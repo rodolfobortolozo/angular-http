@@ -1,25 +1,45 @@
 <h1>User</h1>
-<ul>
-  <li *ngFor="let user of users"> {{ user.name }}</li>
-</ul>
-
-<form [formGroup]="formUser" (ngSubmit)="onSubmit()" *ngIf="formUser">
+  <table>
+    <tr>
+      <td>ID</td>
+      <td>Nome</td>
+      <td>User</td>
+      <td>Password</td>
+      <td>Status</td>
+      <td>Alterar</td>
+      <td>Excluir</td>
+    </tr>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.user }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.status }}</td>
+        <td><button (click)="editUser(user)">Alterar</button></td>
+        <td><button (click)="deleteUser(user)">Excluir</button></td>
+      </tr>
+    </tbody>
+  </table>
+<br>
+<form [formGroup]="formUser" (ngSubmit)="onSubmit()">
   <label for="id">Id</label>
-  <input name="id" id="id" formControlName="id">
-
+  <input name="id" id="id" formControlName="id" [(ngModel)]="user.id" >
+  <br>
   <label for="name">Nome</label>
-  <input name="name" id="name" formControlName="name">
-
+  <input name="name" id="name" formControlName="name" [(ngModel)]="user.name">
+  <br>
   <label for="user">User</label>
-  <input name="user" id="user" formControlName="user">
-
+  <input name="user" id="user" formControlName="user" [(ngModel)]="user.user">
+  <br>
   <label for="password">Password</label>
-  <input name="password" id="password" formControlName="password">
-
+  <input name="password" id="password" formControlName="password" [(ngModel)]="user.password">
+  <br>
   <label for="status">Status</label>
-  <select name="status" id="status" formControlName="status">
-    <option value="A">Ativo</option>
+  <select name="status" id="status" formControlName="status" [(ngModel)]="user.status">
+    <option value="A" selected>Ativo</option>
     <option value="I">Inativo</option>
   </select>
-  <button type="submit">Salvar</button>
+  <button type="submit">{{ user.id? "Alterar" : "Salvar" }}</button>
+  <button (click)="clearForm()" *ngIf="user.id">Limpar</button>
 </form>
